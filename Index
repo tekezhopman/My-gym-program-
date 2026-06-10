@@ -1,0 +1,286 @@
+```html
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>የአብዮት የጂም መርሃ-ግብር</title>
+    <style>
+        :root {
+            --primary: #1e293b;
+            --accent: #2563eb;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #0f172a;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            direction: ltr;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            background: var(--primary);
+            color: white;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        h1 { margin: 0; font-size: 24px; }
+        p { margin: 5px 0 0 0; opacity: 0.8; }
+
+        .days-container {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        .day-btn {
+            background: #e2e8f0;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+
+        .day-btn.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        .routine-section {
+            display: none;
+        }
+
+        .routine-section.active {
+            display: block;
+        }
+
+        .workout-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgb(0 0 0 / 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        @media(min-width: 600px) {
+            .workout-card {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+
+        .workout-anim {
+            width: 100%;
+            max-width: 200px;
+            height: 150px;
+            border-radius: 8px;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            align-self: center;
+        }
+
+        .workout-anim img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .workout-info {
+            flex: 1;
+        }
+
+        .workout-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 0 0 8px 0;
+        }
+
+        .badge {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .details {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #475569;
+            line-height: 1.5;
+        }
+
+        .rest-day {
+            text-align: center;
+            padding: 40px;
+            background: #f0fdf4;
+            border: 2px dashed #bbf7d0;
+            border-radius: 12px;
+            color: #166534;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>የአብዮት የጂም ረዳት 🏋️‍♂️</h1>
+        <p>ክብደት ለመጨመርና ጡንቻን ለማውጣት የሚረዳ የግል መመሪያ</p>
+    </header>
+
+    <!-- የቀናት መምረጫ -->
+    <div class="days-container">
+        <button class="day-btn active" onclick="showDay('monday')">ሰኞ (ደረት/ኋላ እጅ)</button>
+        <button class="day-btn" onclick="showDay('tuesday')">ማክሰኞ (ጀርባ/ፊት እጅ)</button>
+        <button class="day-btn" onclick="showDay('wednesday')">ረቡዕ (እረፍት)</button>
+        <button class="day-btn" onclick="showDay('thursday')">ሐሙስ (ትከሻ/ሆድ)</button>
+        <button class="day-btn" onclick="showDay('friday')">አርብ (እግር)</button>
+    </div>
+
+    <!-- ሰኞ -->
+    <div id="monday" class="routine-section active">
+        <div class="workout-card">
+            <div class="workout-anim">
+                <img src="https://musclewiki.com/media/uploads/barbell-bench-press.gif" alt="Bench Press">
+            </div>
+            <div class="workout-info">
+                <div class="workout-title">1. Bench Press (የደረት ፕሬስ) <span class="badge">3 ዙር x 10 ጊዜ</span></div>
+                <div class="details">ባርቤሉን ወደ ደረትህ ቀስ ብለህ አውርድና ወደ ላይ ግፋው። ክንድህ 90 ዲግሪ መስራት አለበት።</div>
+            </div>
+        </div>
+        <div class="workout-card">
+            <div class="workout-anim">
+                <img src="https://musclewiki.com/media/uploads/dumbbell-incline-bench-press.gif" alt="Incline Dumbbell">
+            </div>
+            <div class="workout-info">
+                <div class="workout-title">2. Incline Dumbbell Press (የላይኛው ደረት) <span class="badge">3 ዙር x 12 ጊዜ</span></div>
+                <div class="details">ትንሽ ከፍ ባለ ወንበር ላይ በመተኛት ዱምቤሎችን ወደ ላይ መግፋት። ለላይኛው ደረት ቅርፅ ይሰጣል።</div>
+            </div>
+        </div>
+        <div class="workout-card">
+            <div class="workout-anim">
+                <img src="https://musclewiki.com/media/uploads/cable-tricep-pushdown.gif" alt="Tricep Pushdown">
+            </div>
+            <div class="workout-info">
+                <div class="workout-title">3. Tricep Pushdown (የኋላ እጅ) <span class="badge">3 ዙር x 12 ጊዜ</span></div>
+                <div class="details">ክርንህን ሳታንቀሳቅስ ገመዱን ወይም ባሩን ወደ ታች ብቻ መጫን።</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ማክሰኞ -->
+    <div id="tuesday" class="routine-section">
+        <div class="workout-card">
+            <div class="workout-anim">
+                <img src="https://musclewiki.com/media/uploads/cable-lat-pulldown.gif" alt="Lat Pulldown">
+            </div>
+            <div class="workout-info">
+                <div class="workout-title">1. Lat Pulldown (የጀርባ መሳቢያ) <span class="badge">3 ዙር x 10 ጊዜ</span></div>
+                <div class="details">ባሩን ወደ ላይኛው ደረትህ ሳበው። ትከሻህንና ጀርባህን ተጠቀም።</div>
+            </div>
+        </div>
+        <div class="workout-card">
+            <div class="workout-anim">
+                <img src="https://musclewiki.com/media/uploads/barbell-biceps-curl.gif" alt="Bicep Curl">
+            </div>
+            <div class="workout-info">
+                <div class="workout-title">2. Barbell Bicep Curls (የፊት እጅ) <span class="badge">3 ዙር x 12 ጊዜ</span></div>
+                <div class="details">ባርቤሉን ወደ ትከሻህ ማጠፍ። ሰውነትህን ወደ ኋላና ወደ ፊት አታወዛውዝ።</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ረቡዕ -->
+    <div id="wednesday" class="routine-section">
+        <div class="rest-day">
+            <h2>💤 ዛሬ ሙሉ እረፍት ነው!</h2>
+            <p>ጡንቻዎችህ የሚያድጉት ዛሬ ነው። በደንብ ተመገብ፣ ፕሮቲንና ካርቦሃይድሬት ያላቸውን ምግቦች አብዛ።</p>
+        </div>
+    </div>
+
+    <!-- ሐሙስ -->
+    <div id="thursday" class="routine-section">
+        <div class="workout-card">
+            <div class="workout-anim">
+                <img src="https://musclewiki.com/media/uploads/dumbbell-seated-shoulder-press.gif" alt="Shoulder Press">
+            </div>
+            <div class="workout-info">
+                <div class="workout-title">1. Seated Dumbbell Shoulder Press <span class="badge">3 ዙር x 10 ጊዜ</span></div>
+                <div class="details">ወንበር ላይ ተቀምጠህ ዱምቤሎችን ወደ ላይ መግፋት። ለትከሻ ጥንካሬና ስፋት።</div>
+            </div>
+        </div>
+        <div class="workout-card">
+            <div class="workout-anim">
+                <img src="https://musclewiki.com/media/uploads/dumbbell-lateral-raise.gif" alt="Lateral Raise">
+            </div>
+            <div class="workout-info">
+                <div class="workout-title">2. Dumbbell Lateral Raises <span class="badge">3 ዙር x 12 ጊዜ</span></div>
+                <div class="details">ዱምቤሎችን ወደ ጎን እንደ ወፍ ክንፍ ከፍ ማድረግ። ክንድህ ላይ ትንሽ መታጠፍ ይኑረው።</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- አርብ -->
+    <div id="friday" class="routine-section">
+        <div class="workout-card">
+            <div class="workout-anim">
+                <img src="https://musclewiki.com/media/uploads/barbell-squat.gif" alt="Squat">
+            </div>
+            <div class="workout-info">
+                <div class="workout-title">1. Barbell Squats (ስኳት) <span class="badge">3 ዙር x 10 ጊዜ</span></div>
+                <div class="details">ባርቤሉን ትከሻህ ላይ አድርገህ ወንበር ላይ እንደምትቀመጥ ወደ ታች መውረድ። ክብደት ለመጨመር ቁልፍ ስፖርት ነው!</div>
+            </div>
+        </div>
+        <div class="workout-card">
+            <div class="workout-anim">
+                <img src="https://musclewiki.com/media/uploads/lever-leg-press.gif" alt="Leg Press">
+            </div>
+            <div class="workout-info">
+                <div class="workout-title">2. Leg Press (የእግር ፕሬስ ማሽን) <span class="badge">3 ዙር x 12 ጊዜ</span></div>
+                <div class="details">ማሽኑን በእግርህ ወደ ፊት መግፋት። ጉልበትህ ሙሉ በሙሉ እንዳይቆለፍ ተጠንቀቅ።</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showDay(dayId) {
+            // ሁሉንም ሴክሽኖች ደብቅ
+            const sections = document.querySelectorAll('.routine-section');
+            sections.forEach(sec => sec.classList.remove('active'));
+            
+            // ሁሉንም በተኖች አቀዝቅዝ
+            const buttons = document.querySelectorAll('.day-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // የተመረጠውን አሳይ
+            document.getElementById(dayId).classList.add('active');
+            
+            // ክሊክ የተደረገበትን በተን አድምቅ
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
+
+```
